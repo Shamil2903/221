@@ -1,0 +1,20 @@
+import sys
+ 
+def construct_balanced_bst(arr, left, right, result):
+    if left > right:
+        return
+    mid = (left + right) // 2  # Choose the middle element
+    result.append(arr[mid])  # Insert the middle element first
+    construct_balanced_bst(arr, left, mid - 1, result)  # Left subtree
+    construct_balanced_bst(arr, mid + 1, right, result)  # Right subtree
+ 
+# Read input
+N = int(sys.stdin.readline().strip())
+A = list(map(int, sys.stdin.readline().split()))
+ 
+# Result array to store the insertion order
+result = []
+construct_balanced_bst(A, 0, N - 1, result)
+ 
+# Print the order of insertion
+print(*result)
